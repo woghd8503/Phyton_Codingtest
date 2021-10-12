@@ -34,6 +34,8 @@ for i in range(n):
 
 print(result)
 
+
+
 '''
 2
 3 4
