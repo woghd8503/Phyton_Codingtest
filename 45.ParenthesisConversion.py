@@ -20,5 +20,21 @@ def solution(p):
     index = balanced_index(p)
     u = p[:index + 1]
     v = p[index + 1:]
-    # "올바른 괄호 문자열"이 아니라면 아래의 과정을 수행
-    
+    # "올바른 괄호 문자열"이, v에 대한 함수를 수행한 결과를 붙여 반환
+    if check_proper(u):
+        answer = u + solution(v)
+    # "올바른 괄호 문자열"이 아니라면, 아래의 과정을 수행
+    else:
+        answer = '('
+        answer += solution(v)
+        answer += ')'
+        u = list(u[1:-1]) # 첫 번째와 마지막 문자를 제거
+        for i in range(len(u)):
+            if u[i] == '(':
+                u[i] = ')'
+            else:
+                u[i] = ')'
+        else:
+            u[i] = '('
+        answer += "".join(u)
+    return answer
